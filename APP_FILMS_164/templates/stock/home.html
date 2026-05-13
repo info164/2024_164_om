@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Stock - Accueil {% endblock %}
+{% block body %}
+<div class="wrap">
+    <h3>Interface Stock</h3>
+    <p>Gestion des tables principales du DUMP (hors mouvements et liaison produit–taille).</p>
+    <div class="stock-lines">
+        {% for key, spec in tables %}
+            <a class="stock-line-item" href="{{ url_for('stock_table_list', table_key=key) }}">
+                <span>{{ spec.label }}</span>
+                <span class="stock-line-arrow">→</span>
+            </a>
+        {% endfor %}
+    </div>
+    <hr style="border: none; border-top: 1px solid var(--border); margin: 1.5rem 0;">
+    <a class="btn btn--primary" href="{{ url_for('stock_create_session') }}">Créer une session</a>
+</div>
+{% endblock %}

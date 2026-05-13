@@ -3,13 +3,22 @@ Fichier : 2_test_connection_bd.py
 Auteur : OM 2023.03.21
 """
 
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+# Permet l'exécution directe du fichier (clic droit "Run in terminal") depuis n'importe quel dossier.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+
 from APP_FILMS_164.database.database_tools import DBconnection
 
 try:
     """
         Une seule requête pour montrer la récupération des données de la BD en MySql.
     """
-    strsql_genres_afficher = """SELECT id_genre, intitule_genre, date_ins_genre FROM t_genre ORDER BY id_genre ASC"""
+    strsql_genres_afficher = """SELECT * FROM t_produit"""
 
     with DBconnection() as db:
         db.execute(strsql_genres_afficher)

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Stock - Supprimer {% endblock %}
+{% block body %}
+<div class="wrap">
+    <h3>Supprimer — {{ spec.label }}</h3>
+    <p>Confirme la suppression de l'élément ci-dessous.</p>
+    <pre class="code-preview">{{ row }}</pre>
+    <form method="POST">
+        <button class="btn btn--danger" type="submit">Supprimer</button>
+        <a class="btn btn--secondary" href="{{ url_for('stock_table_list', table_key=request.view_args.table_key) }}">Annuler</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+  "name": "164_films_om",
+  "private": true,
+  "scripts": {
+    "build:css": "sass APP_FILMS_164/static/scss/main.scss APP_FILMS_164/static/css/custom.css --style=expanded --no-source-map",
+    "watch:css": "sass --watch APP_FILMS_164/static/scss/main.scss:APP_FILMS_164/static/css/custom.css --style=expanded --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

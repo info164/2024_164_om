@@ -1,0 +1,168 @@
+// =============================================================================
+// Design tokens — modifier surtout ici pour harmoniser tout le site
+// (couleurs de thème, rayons, espacements, boutons, typo…)
+// =============================================================================
+
+// --- Palette thème « clair » (utilisée pour :root et [data-theme="light"]) ---
+$light-bg: #f6f8fb;
+$light-surface: #ffffff;
+$light-surface-2: #f1f5f9;
+$light-text: #111827;
+$light-muted: #4b5563;
+$light-border: #dbe3ee;
+$light-primary: #2563eb;
+$light-primary-hover: #1d4ed8;
+$light-accent: #0284c7;
+$light-danger: #dc2626;
+$light-warning: #d97706;
+$light-success: #15803d;
+$light-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+
+// --- Palette thème « sombre » ([data-theme="dark"] + préférence système) ---
+$dark-bg: #0f172a;
+$dark-surface: #111827;
+$dark-surface-2: #1f2937;
+$dark-text: #e5e7eb;
+$dark-muted: #9ca3af;
+$dark-border: #374151;
+$dark-primary: #60a5fa;
+$dark-primary-hover: #3b82f6;
+$dark-accent: #22d3ee;
+$dark-danger: #f87171;
+$dark-warning: #f59e0b;
+$dark-success: #4ade80;
+$dark-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+
+// --- Thème clair explicite (copie du clair par défaut ; ajustez si besoin) ---
+$explicit-light-bg: #fff;
+
+// --- Typographie ---
+$font-family-base: "Segoe UI", Roboto, Arial, sans-serif;
+$line-height-base: 1.45;
+$font-size-small: 0.875rem;
+$font-size-callout-title: 1.05rem;
+
+// --- Espacements fréquents ---
+$space-0: 0;
+$space-1: 0.35rem;
+$space-2: 0.45rem;
+$space-3: 0.5rem;
+$space-4: 0.7rem;
+$space-5: 0.75rem;
+$space-6: 0.85rem;
+$space-7: 1rem;
+$space-8: 1.25rem;
+$space-9: 1.5rem;
+$space-10: 2rem;
+
+// --- Mise en page ---
+$layout-max-width: 1180px;
+$layout-wrap-padding-x: 16px;
+$layout-break-md: 900px;
+$layout-break-nav: 640px;
+$body-offset-fixed-nav: 72px;
+$panel-max-width: 420px;
+$panel-margin-y: 2rem;
+
+// --- Rayons de bordure ---
+$radius-sm: 8px;
+$radius-md: 10px;
+$radius-lg: 12px;
+$radius-xl: 14px;
+$radius-pill: 999px;
+
+// --- Z-index ---
+$z-topnav: 1200;
+$z-flash: 1300;
+
+// --- Navigation ---
+$topnav-min-height: 64px;
+$topnav-bar-gap: 14px;
+$topnav-list-gap: 10px;
+$topnav-submenu-min-width: 220px;
+$topnav-submenu-offset-top: 6px;
+$theme-toggle-min-width: 110px;
+
+// --- Boutons (structure — les couleurs d’état utilisent souvent les CSS vars du thème) ---
+$btn-border-width: 1px;
+$btn-border-radius: $radius-md;
+$btn-font-weight: 600;
+$btn-font-size: 1rem;
+$btn-line-height: 1.2;
+$btn-padding-y: $space-3;
+$btn-padding-x: $space-4;
+$btn-gap-inner: $space-7; // flash, etc.
+
+$btn-sm-padding-y: $space-1;
+$btn-sm-padding-x: 0.65rem;
+$btn-sm-font-size: 0.86rem;
+
+$btn-transition: transform 0.15s ease, box-shadow 0.15s ease;
+$btn-hover-translate-y: -1px;
+$btn-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+// Fond « primaire » plein (bouton principal) — indépendant de --primary si vous voulez un bleu différent
+$btn-primary-bg: #2343c2;
+$btn-primary-fg: #fff;
+
+// Texte sur bouton warning (lisibilité sur fond ambre)
+$btn-warning-fg: #111827;
+
+// Icône / texte sur bouton info (sur fond accent clair)
+$btn-info-fg: #082f49;
+
+// --- Champs formulaire ---
+$control-padding-y: 0.55rem;
+$control-padding-x: $space-4;
+$control-border-radius: $radius-md;
+$control-font-size-sm: 0.92rem;
+$control-padding-y-sm: 0.4rem;
+$control-padding-x-sm: 0.55rem;
+$label-font-weight: 600;
+$label-margin-bottom: 0.4rem;
+
+// --- Panneaux & callout ---
+$panel-padding: $space-8;
+$panel-border-radius: $radius-xl;
+$callout-padding-y: $space-7;
+$callout-padding-x: $space-8;
+$callout-border-radius: $radius-lg;
+
+// --- Tableaux ---
+$data-table-cell-padding-y: 0.6rem;
+$data-table-cell-padding-x: $space-4;
+$data-table-compact-py: 0.45rem;
+$data-table-compact-px: 0.55rem;
+$data-table-border-radius: $radius-lg;
+$table-row-hover-bg: rgba(37, 99, 235, 0.08);
+$stock-line-hover-bg: $table-row-hover-bg;
+
+// --- Flash ---
+$flash-stack-top: 84px;
+$flash-stack-max: 900px;
+$flash-padding-y: $space-4;
+$flash-padding-x: $space-4;
+$flash-border-radius: $radius-lg;
+$flash-hide-translate-y: -8px;
+$flash-icon-size: 24px;
+$flash-icon-font-size: 0.85rem;
+
+// --- Code / blocs ---
+$code-preview-padding: $space-7;
+$code-preview-font-size: 0.9rem;
+
+// --- Stock list ---
+$stock-line-padding-y: $space-6;
+$stock-line-padding-x: $space-7;
+
+// --- Utilitaires grille formulaire (stock link_list) ---
+$gap-form-row-min-field: 200px;
+$gap-form-row-min-width: 160px;
+$gap-form-row-btn-width: 140px;
+$layout-split-min-col: 320px;
+$layout-grid-2-gap: $space-7;
+$flex-between-gap: $space-5;
+
+// --- Lettering nav ---
+$brand-font-weight: 700;
+$brand-letter-spacing: 0.2px;

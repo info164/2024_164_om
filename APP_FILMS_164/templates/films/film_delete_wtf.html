@@ -1,89 +1,55 @@
 {% extends "base.html" %}
 {% block title %} Effacer un FILM (WTF) {% endblock %}
 {% block body %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<p>
-				Effacer un FILM
-			</p>
-			<table class="table table-responsive-sm">
-				{% if data_film_del %}
-				<thead>
-				<tr>
-					<th class="">
-						Id
-					</th>
-					<th class="">
-						Nom
-					</th>
-					<th class="">
-						Durée
-					</th>
-					<th class="">
-						Date de sortie
-					</th>
-					<th class="">
-						Description
-					</th>
-					<th class="">
-						Affiche
-					</th>
-				</tr>
-				</thead>
-				{% endif %}
-				{% for row in data_film_del %}
-				<tbody>
-				<tr>
-					<th class="align-middle">
-						{{ row.id_film }}
-					</th>
-					<th class="align-middle">
-						{{ row.nom_film }}
-					</th>
-					<th class="align-middle">
-						{{ row.duree_film|default("", True) }}
-					</th>
-					<th class="align-middle">
-						{{ row.date_sortie_film|default("", True) }}
-					</th>
-					<th class="align-middle">
-						{{ row.description_film|default("", True) }}
-					</th>
-					<th class="align-middle">
-						<img class="img" src={{ row.cover_link_film|default(None, True) }}
-							 style="border: 0;display:block; width:150px; max-height:auto;"
-							 alt="image masquée FFP8 (in COVID-19 Memory) (absente) mod 164">
-					</th>
+<div class="wrap">
+	<p>Effacer un FILM</p>
+	<div class="table-wrap">
+		<table class="data-table">
+			{% if data_film_del %}
+			<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Durée</th>
+				<th>Date de sortie</th>
+				<th>Description</th>
+				<th>Affiche</th>
+			</tr>
+			</thead>
+			{% endif %}
+			{% for row in data_film_del %}
+			<tbody>
+			<tr>
+				<th class="cell-middle">{{ row.id_film }}</th>
+				<th class="cell-middle">{{ row.nom_film }}</th>
+				<th class="cell-middle">{{ row.duree_film|default("", True) }}</th>
+				<th class="cell-middle">{{ row.date_sortie_film|default("", True) }}</th>
+				<th class="cell-middle">{{ row.description_film|default("", True) }}</th>
+				<th class="cell-middle">
+					<img class="img" src={{ row.cover_link_film|default(None, True) }}
+						 style="border: 0;display:block; width:150px; max-height:auto;"
+						 alt="image masquée FFP8 (in COVID-19 Memory) (absente) mod 164">
+				</th>
+			</tr>
+			</tbody>
+			{% else %}
+			<tbody>
+			<tr></tr>
+			</tbody>
+			{% endfor %}
 
-				<tr>
-
-				</tr>
-				</tr>
-				</tbody>
-				{% else %}
-				<tbody>
-				<tr>
-
-				</tr>
-				</tbody>
-				{% endfor %}
-
-			</table>
-
-			<form action="" method="POST" novalidate>
-				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
-				{{ form_delete_film.hidden_tag() }}
-				{{ form_delete_film.submit_btn_conf_del_film(class="btn btn-info") }}
-
-				{% if btn_submit_del %}
-					{{ form_delete_film.submit_btn_del_film(class="btn btn-danger") }}
-				{% endif %}
-
-				{{ form_delete_film.submit_btn_annuler(class="btn btn-primary") }}
-			</form>
-		</div>
+		</table>
 	</div>
+
+	<form action="" method="POST" novalidate>
+		{{ form_delete_film.hidden_tag() }}
+		{{ form_delete_film.submit_btn_conf_del_film(class="btn btn--info") }}
+
+		{% if btn_submit_del %}
+			{{ form_delete_film.submit_btn_del_film(class="btn btn--danger") }}
+		{% endif %}
+
+		{{ form_delete_film.submit_btn_annuler(class="btn btn--primary") }}
+	</form>
 </div>
 {% endblock %}
-

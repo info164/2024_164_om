@@ -1,68 +1,46 @@
 {% extends "base.html" %}
 {% block title %} Afficher FILMS {% endblock %}
 {% block body %}
-<div class="container">
-	<div class="col-md-12">
-		<table class="table table-responsive-sm">
+<div class="wrap">
+	<div class="table-wrap">
+		<table class="data-table">
             {% if data %}
 				<thead>
 					<tr>
-						<th class="" >
-						  Id
-						</th>
-						<th class="" >
-						  Nom
-						</th>
-						<th class="" >
-						  Durée
-						</th>
-						<th class="" >
-						  Date de sortie
-						</th>
-						<th class="" >
-						  Description
-						</th>
-						<th class="" >
-						  Affiche
-						</th>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Durée</th>
+						<th>Date de sortie</th>
+						<th>Description</th>
+						<th>Affiche</th>
 					</tr>
 				</thead>
 			{% endif %}
 			{% for row in data %}
 			<tbody>
 				<tr>
-					  <th class="align-middle">
-						  {{ row.id_film }}
-					  </th>
-					  <th class="align-middle">
-						{{ row.nom_film }}
-					  </th>
-					  <th class="align-middle">
-						{{ row.duree_film|default("", True) }}
-					  </th>
-					  <th class="align-middle">
-						{{ row.date_sortie_film|default("", True) }}
-					  </th>
-					  <th class="align-middle">
-						{{ row.description_film|default("", True) }}
-					  </th>
-					  <th class="align-middle">
+					  <th class="cell-middle">{{ row.id_film }}</th>
+					  <th class="cell-middle">{{ row.nom_film }}</th>
+					  <th class="cell-middle">{{ row.duree_film|default("", True) }}</th>
+					  <th class="cell-middle">{{ row.date_sortie_film|default("", True) }}</th>
+					  <th class="cell-middle">{{ row.description_film|default("", True) }}</th>
+					  <th class="cell-middle">
 						<img class="img" src={{ row.cover_link_film|default(None, True) }} style="border: 0;display:block; width:150px; max-height:auto;"  alt = "image masquée FFP8 (in COVID-19 Memory) (absente) mod 164">
 					  </th>
-					  <th class="align-middle">
-						<a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Ajouter</a>
+					  <th class="cell-middle">
+						<a class="btn btn--primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Ajouter</a>
 					  </th>
-					  <th class="align-middle">
-						<a class="btn btn-warning" href="{{ url_for('film_update_wtf', id_film_btn_edit_html=row.id_film) }}" role="button">Edit</a>
+					  <th class="cell-middle">
+						<a class="btn btn--warning" href="{{ url_for('film_update_wtf', id_film_btn_edit_html=row.id_film) }}" role="button">Edit</a>
 					  </th>
-					  <th class="align-middle">
-						<a class="btn btn-danger" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Delete</a>
+					  <th class="cell-middle">
+						<a class="btn btn--danger" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Delete</a>
 					  </th>
 					<tr>
-						<td class="align-middle">
-							<a class="btn btn-warning" href="{{ url_for('edit_genre_film_selected', id_film_genres_edit_html=row.id_film) }}" role="button">Modifier</a>
+						<td class="cell-middle">
+							<a class="btn btn--warning" href="{{ url_for('edit_genre_film_selected', id_film_genres_edit_html=row.id_film) }}" role="button">Modifier</a>
 						</td>
-						<td class="align-middle" colspan="5">
+						<td class="cell-middle" colspan="5">
 							{{ row.GenresFilms|default("PAS DE GENRES", True) }}
 						</td>
 					</tr>
@@ -71,11 +49,9 @@
 			{% else %}
 				<tbody>
 					<tr>
+						<td>Aucun film.</td>
 						<td>
-							Aucun film.
-						</td>
-						<td>
-							<a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
+							<a class="btn btn--primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
 						</td>
 					</tr>
 				</tbody>

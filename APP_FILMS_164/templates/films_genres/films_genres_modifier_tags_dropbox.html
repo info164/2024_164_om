@@ -28,8 +28,7 @@
     </style>
 
 
-<div class="container">
-		<div class="col-md-12">
+<div class="wrap">
 			<p>
 				Tagselect, c'est une DROPBOX qui surgit quand on sélectionne l'espace "TAGS". Pour votre information, le composant TAGSELECT est à disposition sur ce site :
                  <a href="https://www.jqueryscript.net/form/tags-selector-tagselect.html"
@@ -39,28 +38,17 @@
             <p>
                 Films.
             </p>
-            <table class="table table-responsive-sm">
+            <div class="table-wrap">
+            <table class="data-table">
                 {% if data_film_selected %}
                     <thead>
                         <tr>
-                            <th class="">
-                                id
-                            </th>
-                            <th class="">
-                                Titre
-                            </th>
-                            <th class="">
-                                Durée
-                            </th>
-                            <th class="">
-                                Date sortie
-                            </th>
-                            <th class="">
-                                Description
-                            </th>
-                            <th class="">
-                                Affiche
-                            </th>
+                            <th class="cell-middle">id</th>
+                            <th class="cell-middle">Titre</th>
+                            <th class="cell-middle">Durée</th>
+                            <th class="cell-middle">Date sortie</th>
+                            <th class="cell-middle">Description</th>
+                            <th class="cell-middle">Affiche</th>
                         </tr>
                     </thead>
             {% endif %}
@@ -68,22 +56,12 @@
             {% for row in data_film_selected %}
 				<tbody>
 					<tr>
-						<td class="align-middle">
-							{{ row.id_film }}
-						</td>
-						<td class="align-middle">
-							{{ row.nom_film }}
-						</td>
-						<td class="align-middle">
-							{{ row.duree_film|default("", True) }}
-						</td>
-						<td class="align-middle">
-							{{ row.date_sortie_film|default("", True) }}
-						</td>
-						<td class="align-middle">
-							{{ row.description_film|default("", True) }}
-						</td>
-						<td class="align-middle">
+						<td class="cell-middle">{{ row.id_film }}</td>
+						<td class="cell-middle">{{ row.nom_film }}</td>
+						<td class="cell-middle">{{ row.duree_film|default("", True) }}</td>
+						<td class="cell-middle">{{ row.date_sortie_film|default("", True) }}</td>
+						<td class="cell-middle">{{ row.description_film|default("", True) }}</td>
+						<td class="cell-middle">
                             <img class="img" src={{ row.cover_link_film|default(None, True) }} style="border: 0;display:block; width:150px; max-height:auto;" alt = "image masquée FFP67 (in COVID-29 Memory) (absente) mod 164">
 						</td>
 					</tr>
@@ -91,23 +69,21 @@
             {% else %}
 				<tbody>
 					<tr>
+						<td>Aucun film.</td>
 						<td>
-							Aucun film.
-						</td>
-						<td>
-							<a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
+							<a class="btn btn--primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
 						</td>
 					</tr>
 				</tbody>
             {% endfor %}
 			</table>
-		</div>
+			</div>
 	</div>
 
-<div class="container">
-    <div class="row mx-md-n5">
-      <div class="col px-md-5">
-          <div class="p-3">
+<div class="wrap">
+    <div class="layout-split">
+      <div class="layout-split__col">
+          <div class="panel panel--wide">
             <form id="form_tags_select_confirm" action="{{ url_for('update_genre_film_selected') }}" method="POST">
                 <div class="qtagselect isw360">
                     <select id="OM_JTSD" name="name_select_tags" class="qtagselect__select" multiple>
@@ -124,9 +100,9 @@
             </form>
           </div>
       </div>
-      <div class="col px-md-5">
-          <div class="p-3">
-            <input type="submit" form="form_tags_select_confirm" class="btn btn-warning" value="Modifier">
+      <div class="layout-split__col">
+          <div style="padding: 0.75rem 0;">
+            <input type="submit" form="form_tags_select_confirm" class="btn btn--warning" value="Modifier">
           </div>
       </div>
     </div>

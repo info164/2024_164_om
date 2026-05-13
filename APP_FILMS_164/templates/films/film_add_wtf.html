@@ -1,29 +1,21 @@
 {% extends "base.html" %}
 {% block title %} Ajouter un FILM (WTF) {% endblock %}
 {% block body %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
+<div class="wrap">
+	<p>Ajouter un nouveau FILM (WTForms)</p>
+	<form action="" method="POST" novalidate>
+		{{ form_add_film.hidden_tag() }}
+		<div class="form-stack">
 			<p>
-				Ajouter un nouveau FILM (WTForms)
+				{{ form_add_film.nom_film_add_wtf.label }}<br>
+				{{ form_add_film.nom_film_add_wtf(size=32) }}<br>
+				{% for error in form_add_film.nom_film_add_wtf.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
 			</p>
-			<form action="" method="POST" novalidate>
-				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
-				{{ form_add_film.hidden_tag() }}
-				<div class="form-group">
-					<p>
-						{{ form_add_film.nom_film_add_wtf.label }}<br>
-						{{ form_add_film.nom_film_add_wtf(size=32) }}<br>
-						{% for error in form_add_film.nom_film_add_wtf.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-					Voilà c'est juste pour vous montrer l'ossature du projet je n'ai pas tout fait...
-				</div>
-				{{ form_add_film.submit(class="btn btn-primary") }}
-			</form>
+			Voilà c'est juste pour vous montrer l'ossature du projet je n'ai pas tout fait...
 		</div>
-	</div>
+		{{ form_add_film.submit(class="btn btn--primary") }}
+	</form>
 </div>
 {% endblock %}
-

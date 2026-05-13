@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Stock - {{ spec.label }} {% endblock %}
+{% block body %}
+<div class="wrap">
+    {% set readonly = request.view_args.table_key == "t_connexion" %}
+    <div class="flex-between mt-3">
+        <h3>{{ spec.label }}</h3>
+        {% if not readonly %}
+        <a class="btn btn--primary" href="{{ url_for('stock_table_add', table_key=request.view_args.table_key) }}">Ajouter</a>
+        {% endif %}
+    </div>
+    <div class="table-wrap">
+        <table class="data-table data-table--bordered data-table--compact mt-3">
+            <thead>
+                <tr>
+                    {% for c in spec.list_columns %}
+                        <th>{{ c }}</th>
+                    {% endfor %}
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+                <tr>
+                    {% for c in spec.list_columns %}
+                        <td>{{ row[c] }}</td>
+                    {% endfor %}
+                    {% if not readonly %}
+                    <td class="text-center">
+                        <a class="btn btn--warning btn--sm" href="{{ url_for('stock_table_edit', table_key=request.view_args.table_key, pk=row[spec.pk]) }}">Edit</a>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn--danger btn--sm" href="{{ url_for('stock_table_delete', table_key=request.view_args.table_key, pk=row[spec.pk]) }}">Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr><td colspan="{{ spec.list_columns|length + (0 if readonly else 2) }}">Aucune donnée.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

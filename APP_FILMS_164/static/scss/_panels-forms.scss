@@ -1,0 +1,89 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* --- Panneaux & champs --- */
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: $panel-border-radius;
+    box-shadow: var(--shadow);
+    padding: $panel-padding;
+    max-width: $panel-max-width;
+    margin: $panel-margin-y auto;
+}
+
+.panel--wide {
+    max-width: none;
+    margin: 0;
+    width: 100%;
+}
+
+.field {
+    margin-bottom: $space-7;
+}
+
+.field-label,
+.field > label {
+    color: var(--muted);
+    display: block;
+    margin-bottom: $label-margin-bottom;
+    font-weight: $label-font-weight;
+}
+
+.control {
+    width: 100%;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: $control-border-radius;
+    padding: $control-padding-y $control-padding-x;
+    font: inherit;
+
+    &:focus {
+        @include control-focus;
+    }
+}
+
+select.control {
+    cursor: pointer;
+}
+
+.control--sm {
+    padding: $control-padding-y-sm $control-padding-x-sm;
+    font-size: $control-font-size-sm;
+}
+
+.form-stack > p {
+    margin: 0 0 $space-7;
+}
+
+.form-stack input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+.form-stack textarea,
+.form-stack select {
+    width: 100%;
+    max-width: 100%;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: $control-border-radius;
+    padding: $control-padding-y $control-padding-x;
+    font: inherit;
+
+    &:focus {
+        @include control-focus;
+    }
+}
+
+.callout {
+    border-radius: $callout-border-radius;
+    padding: $callout-padding-y $callout-padding-x;
+    margin-bottom: $space-7;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.callout__title {
+    margin: 0 0 $space-3;
+    font-size: $font-size-callout-title;
+}

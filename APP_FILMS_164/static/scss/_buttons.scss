@@ -1,0 +1,45 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* --- Boutons --- */
+
+.btn {
+    @include btn-base;
+}
+
+.btn--sm {
+    @include btn-size-sm;
+}
+
+.btn--primary {
+    @include btn-solid($btn-primary-bg, $btn-primary-fg, var(--primary-hover));
+}
+
+.btn--outline {
+    background: transparent;
+    border-color: var(--primary);
+    color: var(--primary);
+
+    &:hover {
+        background: var(--primary);
+        color: #fff;
+    }
+}
+
+.btn--secondary {
+    background: var(--surface-2);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.btn--warning {
+    @include btn-solid(var(--warning), $btn-warning-fg);
+}
+
+.btn--danger {
+    @include btn-solid(var(--danger), #fff);
+}
+
+.btn--info {
+    @include btn-solid(var(--accent), $btn-info-fg);
+}

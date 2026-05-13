@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Stock - Nouvelle session {% endblock %}
+{% block body %}
+<div class="wrap">
+    <h3>Créer une session</h3>
+    <p>Saisis le nom, le prénom et le mot de passe de session (colonnes du DUMP). La réf. personne est optionnelle.</p>
+
+    <form method="POST" novalidate>
+        <div class="field">
+            <label class="field-label" for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" class="control" required>
+        </div>
+        <div class="field">
+            <label class="field-label" for="prenom">Prénom</label>
+            <input id="prenom" name="prenom" type="text" class="control" required>
+        </div>
+        <div class="field">
+            <label class="field-label" for="mot_de_passe">Mot de passe session</label>
+            <input id="mot_de_passe" name="mot_de_passe" type="password" class="control" required>
+        </div>
+        <div class="field">
+            <label class="field-label" for="fk_personne">Réf. personne (optionnel)</label>
+            <input id="fk_personne" name="fk_personne" type="number" min="1" step="1" class="control" placeholder="Entier facultatif">
+        </div>
+        <button class="btn btn--primary" type="submit">Créer</button>
+        <a class="btn btn--secondary" href="{{ url_for('stock_table_list', table_key='t_session') }}">Annuler</a>
+    </form>
+</div>
+{% endblock %}

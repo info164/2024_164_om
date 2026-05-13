@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %} Stock - {{ spec.label }} {% endblock %}
+{% block body %}
+<div class="wrap">
+    <div class="flex-between">
+        <h3>{{ spec.label }}</h3>
+        <a class="btn btn--secondary" href="{{ url_for('stock_home') }}">Accueil</a>
+    </div>
+
+    <form method="POST" class="mt-3">
+        <div class="gap-form-row">
+            <div class="gap-form-row__field">
+                <label class="field-label">Produit</label>
+                <select class="control" name="fk_produit" required>
+                    {% for val, lab in produits %}
+                        {% if val != "" %}
+                            <option value="{{ val }}">{{ lab }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="gap-form-row__field">
+                <label class="field-label">Taille</label>
+                <select class="control" name="fk_taille" required>
+                    {% for val, lab in tailles %}
+                        {% if val != "" %}
+                            <option value="{{ val }}">{{ lab }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="gap-form-row__action">
+                <button class="btn btn--primary u-width-full" type="submit">Ajouter</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="table-wrap">
+        <table class="data-table data-table--bordered data-table--compact mt-4">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Taille</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in links %}
+                    <tr>
+                        <td>{{ l.fk_produit }} - {{ l.produit_nom }}</td>
+                        <td>{{ l.fk_taille }} - {{ l.taille_lib }}</td>
+                        <td class="text-center">
+                            <form method="POST" action="{{ url_for('stock_link_delete', fk_produit=l.fk_produit, fk_taille=l.fk_taille) }}">
+                                <button class="btn btn--danger btn--sm" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="3">Aucune association.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

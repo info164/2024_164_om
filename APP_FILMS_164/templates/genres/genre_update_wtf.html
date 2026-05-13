@@ -1,35 +1,41 @@
 {% extends "base.html" %}
-{% block title %} Editer un GENRE (WTF) {% endblock %}
+{% block title %} Editer un PRODUIT (WTF) {% endblock %}
 {% block body %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
+<div class="wrap">
+	<p>Editer un PRODUIT</p>
+	<form action="" method="POST" novalidate>
+		{{ form_update.hidden_tag() }}
+		<div class="form-stack">
 			<p>
-				Editer un GENRE
+				{{ form_update.nom_produit_update_wtf.label }}<br>
+				{{ form_update.nom_produit_update_wtf(size=32) }}<br>
+				{% for error in form_update.nom_produit_update_wtf.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
 			</p>
-			<form action="" method="POST" novalidate>
-				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
-				{{ form_update.hidden_tag() }}
-				<div class="form-group">
-					<p>
-						{{ form_update.nom_genre_update_wtf.label }}<br>
-						{{ form_update.nom_genre_update_wtf(size=32) }}<br>
-						{% for error in form_update.nom_genre_update_wtf.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-					<p>
-						{{ form_update.date_genre_wtf_essai.label }}<br>
-						{{ form_update.date_genre_wtf_essai(size=32) }}<br>
-						{% for error in form_update.date_genre_wtf_essai.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-				</div>
-				{{ form_update.submit(class="btn btn-primary") }}
-			</form>
+			<p>
+				{{ form_update.prix_update_wtf.label }}<br>
+				{{ form_update.prix_update_wtf(size=32) }}<br>
+				{% for error in form_update.prix_update_wtf.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</p>
+			<p>
+				{{ form_update.quantite_stock_update_wtf.label }}<br>
+				{{ form_update.quantite_stock_update_wtf(size=32) }}<br>
+				{% for error in form_update.quantite_stock_update_wtf.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</p>
+			<p>
+				{{ form_update.fk_modele_update_wtf.label }}<br>
+				{{ form_update.fk_modele_update_wtf(size=32) }}<br>
+				{% for error in form_update.fk_modele_update_wtf.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</p>
 		</div>
-	</div>
+		{{ form_update.submit(class="btn btn--primary") }}
+	</form>
 </div>
 {% endblock %}
-

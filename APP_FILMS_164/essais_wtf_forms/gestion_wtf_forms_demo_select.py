@@ -109,28 +109,19 @@ def demo_select_wtf():
                            data_genres_drop_down=data_genres)
 
 
-@app.route("/demo_select_dropdown_bootstrap", methods=['GET', 'POST'])
-def demo_select_dropdown_bootstrap():
-    print("genre choisi dans la liste :")
+@app.route("/demo_select_dropdown", methods=['GET', 'POST'])
+def demo_select_dropdown():
+    """Démo POST sur une liste déroulante HTML (sans librairie UI externe)."""
+    choice = None
     if request.method == 'POST':
         choix_list_drop_down = request.form.getlist("ma_petite_liste_unique")
         print("choix_list_drop_down ", choix_list_drop_down)
-        print("choix_list_drop_down form ", request.form["ma_petite_liste_unique"])
-        print("choix_list_drop_down form.items() ", request.form.items())
-
-        for key, val in request.form.items():
-            print(key, val)
-
-        keys = request.form.keys()
-        keys = [key for key in keys]
-        print("choix_list_drop_down keys ", keys)
-
-        print("choix_list_drop_down request values ", request.values["ma_petite_liste_unique"])
-        print("choix_list_drop_down request data ", request.data)
-
-        for x in choix_list_drop_down:
-            print("x", x, "genre ", choix_list_drop_down)
+        if choix_list_drop_down:
+            choice = choix_list_drop_down[0]
+        elif "ma_petite_liste_unique" in request.form:
+            choice = request.form["ma_petite_liste_unique"]
+        print("genre choisi dans la liste :", choice)
 
     return render_template("zzz_essais_om_104/essai_form_result_dropdown.html",
-                           my_choice_dropdown=x,
+                           my_choice_dropdown=choice,
                            liste_choice="essai")

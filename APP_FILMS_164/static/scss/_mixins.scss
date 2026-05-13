@@ -1,0 +1,103 @@
+@use "variables" as *;
+
+// Mixins réutilisables (boutons, focus, thèmes)
+
+@mixin theme-light-css-vars {
+    --bg: #{$light-bg};
+    --surface: #{$light-surface};
+    --surface-2: #{$light-surface-2};
+    --text: #{$light-text};
+    --muted: #{$light-muted};
+    --border: #{$light-border};
+    --primary: #{$light-primary};
+    --primary-hover: #{$light-primary-hover};
+    --accent: #{$light-accent};
+    --danger: #{$light-danger};
+    --warning: #{$light-warning};
+    --success: #{$light-success};
+    --shadow: #{$light-shadow};
+}
+
+@mixin theme-light-explicit-css-vars {
+    --bg: #{$explicit-light-bg};
+    --surface: #{$light-surface};
+    --surface-2: #{$light-surface-2};
+    --text: #{$light-text};
+    --muted: #{$light-muted};
+    --border: #{$light-border};
+    --primary: #{$light-primary};
+    --primary-hover: #{$light-primary-hover};
+    --accent: #{$light-accent};
+    --danger: #{$light-danger};
+    --warning: #{$light-warning};
+    --success: #{$light-success};
+    --shadow: #{$light-shadow};
+}
+
+@mixin theme-dark-css-vars {
+    --bg: #{$dark-bg};
+    --surface: #{$dark-surface};
+    --surface-2: #{$dark-surface-2};
+    --text: #{$dark-text};
+    --muted: #{$dark-muted};
+    --border: #{$dark-border};
+    --primary: #{$dark-primary};
+    --primary-hover: #{$dark-primary-hover};
+    --accent: #{$dark-accent};
+    --danger: #{$dark-danger};
+    --warning: #{$dark-warning};
+    --success: #{$dark-success};
+    --shadow: #{$dark-shadow};
+}
+
+/// Anneau de focus sur champs (suit la couleur d’accent du thème actif)
+@mixin control-focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/// Base visuelle commune à .btn et dérivés
+@mixin btn-base {
+    display: inline-block;
+    border: $btn-border-width solid transparent;
+    border-radius: $btn-border-radius;
+    padding: $btn-padding-y $btn-padding-x;
+    font-weight: $btn-font-weight;
+    cursor: pointer;
+    transition: $btn-transition;
+    text-align: center;
+    font-family: inherit;
+    font-size: $btn-font-size;
+    text-decoration: none;
+    line-height: $btn-line-height;
+
+    &:hover {
+        transform: translateY($btn-hover-translate-y);
+        box-shadow: $btn-hover-shadow;
+        text-decoration: none;
+    }
+}
+
+@mixin btn-size-sm {
+    padding: $btn-sm-padding-y $btn-sm-padding-x;
+    font-size: $btn-sm-font-size;
+}
+
+/// Variante pleine : fond + texte + bordure identiques au survol bordure
+@mixin btn-solid($bg, $fg, $hover-bg: null) {
+    background: $bg;
+    border-color: $bg;
+    color: $fg;
+
+    &:hover {
+        @if $hover-bg != null {
+            background: $hover-bg;
+            border-color: $hover-bg;
+        } @else {
+            background: $bg;
+            border-color: $bg;
+        }
+        color: $fg;
+    }
+}

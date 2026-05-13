@@ -1,73 +1,51 @@
 {% extends "base.html" %}
-{% block title %} Afficher GENRES {% endblock %}
+{% block title %} Afficher PRODUITS {% endblock %}
 {% block body %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<p>
-				Genres
-			</p>
-            <table class="table table-bordered table-sm">
-            {% if data %}
-                <thead>
-                    <tr>
-                        <th class="align-middle">
-                            Id
-                        </th>
-                        <th class="align-middle">
-                            Genre
-                        </th>
-                        <th class="align-middle">
-							Date insertion (pour exemple)
-                        </th>
-                        <th class="align-middle">
+<div class="wrap">
+	<p>Produits</p>
+	<div class="table-wrap">
+		<table class="data-table data-table--bordered data-table--compact">
+		{% if data %}
+			<thead>
+				<tr>
+					<th class="cell-middle">Id produit</th>
+					<th class="cell-middle">Type</th>
+					<th class="cell-middle">Prix</th>
+					<th class="cell-middle">Quantité stock</th>
+					<th class="cell-middle">FK modèle</th>
+					<th class="cell-middle"></th>
+					<th class="cell-middle"></th>
+				</tr>
+			</thead>
+		{% endif %}
 
-                        </th>
-                        <th class="align-middle">
-
-                        </th>
-                    </tr>
-                </thead>
-            {% endif %}
-
-            {% for row in data %}
-				<tbody>
-					<tr>
-						<td class="align-middle">
-							{{ row.id_genre }}
-						</td>
-						<td class="align-middle">
-							{{ row.intitule_genre }}
-						</td>
-						<td class="align-middle">
-							{{ row.date_ins_genre }}
-						</td>
-						<td class="text-center" class="align-middle">
-							<a class="btn btn-primary" href="{{ url_for('genres_ajouter_wtf') }}" role="button">Ajouter</a>
-						</td>
-						<td class="text-center" class="align-middle">
-							<a class="btn btn-warning" href="{{ url_for('genre_update_wtf', id_genre_btn_edit_html=row.id_genre) }}" role="button">Edit</a>
-						</td>
-						<td class="text-center" class="align-middle">
-							<a class="btn btn-danger" href="{{ url_for('genre_delete_wtf', id_genre_btn_delete_html=row.id_genre) }}" role="button">Delete</a>
-						</td>
-					</tr>
-				</tbody>
-            {% else %}
-				<tbody>
-					<tr>
-						<td>
-							Aucun genre.
-						</td>
-						<td>
-							<a class="btn btn-primary" href="{{ url_for('genres_ajouter_wtf') }}" role="button">Ajouter</a>
-						</td>
-					</tr>
-				</tbody>
-            {% endfor %}
-			</table>
-		</div>
+		{% for row in data %}
+			<tbody>
+				<tr>
+					<td class="cell-middle">{{ row.id_produit }}</td>
+					<td class="cell-middle">{{ row.nom }}</td>
+					<td class="cell-middle">{{ row.prix }}</td>
+					<td class="cell-middle">{{ row.quantite_stock }}</td>
+					<td class="cell-middle">{{ row.fk_modele }}</td>
+					<td class="text-center cell-middle">
+						<a class="btn btn--warning" href="{{ url_for('genre_update_wtf', id_genre_btn_edit_html=row.id_produit) }}" role="button">Edit</a>
+					</td>
+					<td class="text-center cell-middle">
+						<a class="btn btn--danger" href="{{ url_for('genre_delete_wtf', id_genre_btn_delete_html=row.id_produit) }}" role="button">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		{% else %}
+			<tbody>
+				<tr>
+					<td>Aucun produit.</td>
+					<td class="text-center cell-middle">
+						<a class="btn btn--primary" href="{{ url_for('genres_ajouter_wtf') }}" role="button">Ajouter</a>
+					</td>
+				</tr>
+			</tbody>
+		{% endfor %}
+		</table>
 	</div>
 </div>
 {% endblock %}
-

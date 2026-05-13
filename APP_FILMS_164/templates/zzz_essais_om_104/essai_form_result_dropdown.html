@@ -1,17 +1,14 @@
 {% extends "base.html" %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Résultat liste déroulante{% endblock %}
 {% block body %}
-<div class="container">
+<div class="wrap">
   <h1>Récupération de donnée suite à une DROPDOWN liste</h1>
   <p></p>
   <p><li>Voilà la valeur choisie dans la liste déroulante</li></p>
-  <body>
+  <div>
     <p>{{ my_choice_dropdown }}</p>
     <p>{{ liste_choice }}</p>
-  </body>
-
+  </div>
 </div>
 
 {% endblock %}
-
-

@@ -1,0 +1,130 @@
+@use "variables" as *;
+
+/* --- Barre de navigation --- */
+
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-topnav;
+    background: linear-gradient(135deg, var(--surface), var(--surface-2));
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.topnav__bar {
+    display: flex;
+    align-items: center;
+    gap: $topnav-bar-gap;
+    flex-wrap: wrap;
+    min-height: $topnav-min-height;
+}
+
+.topnav__brand {
+    font-weight: $brand-font-weight;
+    letter-spacing: $brand-letter-spacing;
+    color: var(--text);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--primary);
+        text-decoration: none;
+    }
+}
+
+.topnav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $topnav-list-gap;
+    align-items: center;
+}
+
+.topnav__item {
+    position: relative;
+}
+
+.topnav__item--sub > .topnav__link::after {
+    content: " ▾";
+    font-size: 0.75em;
+    opacity: 0.85;
+}
+
+.topnav__link {
+    display: block;
+    padding: $space-2 $space-4;
+    border-radius: $radius-sm;
+    color: var(--text);
+    text-decoration: none;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: default;
+}
+
+a.topnav__link {
+    cursor: pointer;
+}
+
+.topnav__link:hover {
+    background: var(--surface-2);
+    text-decoration: none;
+}
+
+.topnav__sub {
+    list-style: none;
+    margin: $topnav-submenu-offset-top 0 0;
+    padding: $space-7;
+    min-width: $topnav-submenu-min-width;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    box-shadow: var(--shadow);
+}
+
+.topnav__item--sub:hover > .topnav__sub,
+.topnav__item--sub:focus-within > .topnav__sub {
+    display: block;
+}
+
+.topnav__sublink {
+    display: block;
+    padding: $space-2 $space-4;
+    border-radius: $radius-sm;
+    color: var(--text);
+    text-decoration: none;
+
+    &:hover {
+        background: var(--surface-2);
+        text-decoration: none;
+    }
+}
+
+.topnav__form {
+    padding: $space-1 $space-4;
+}
+
+.topnav__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: $space-7;
+}
+
+@media (max-width: $layout-break-nav) {
+    .topnav__actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+#themeToggle {
+    min-width: $theme-toggle-min-width;
+}

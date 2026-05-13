@@ -1,0 +1,55 @@
+@use "variables" as *;
+
+/* --- Tableaux --- */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: $space-7;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: $data-table-border-radius;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    padding: $data-table-cell-padding-y $data-table-cell-padding-x;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table thead th {
+    background: var(--surface-2);
+    font-weight: $btn-font-weight;
+    text-align: left;
+}
+
+.data-table tbody tr:hover {
+    background: $table-row-hover-bg;
+}
+
+.data-table--bordered th,
+.data-table--bordered td {
+    border-right: 1px solid var(--border);
+}
+
+.data-table--bordered th:last-child,
+.data-table--bordered td:last-child {
+    border-right: 0;
+}
+
+.data-table--compact th,
+.data-table--compact td {
+    padding: $data-table-compact-py $data-table-compact-px;
+}
+
+.cell-middle {
+    vertical-align: middle;
+}

@@ -1,0 +1,101 @@
+@use "variables" as *;
+
+/* --- Messages flash --- */
+
+.flash-stack {
+    position: fixed;
+    top: $flash-stack-top;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92vw, $flash-stack-max);
+    z-index: $z-flash;
+    pointer-events: none;
+}
+
+.flash {
+    display: flex;
+    align-items: center;
+    gap: $btn-gap-inner;
+    border: 1px solid var(--border);
+    border-radius: $flash-border-radius;
+    padding: $flash-padding-y $flash-padding-x;
+    box-shadow: var(--shadow);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: auto;
+    margin-bottom: $space-3;
+}
+
+.flash.flash-hide {
+    opacity: 0;
+    transform: translateY($flash-hide-translate-y);
+}
+
+.flash-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $flash-icon-size;
+    height: $flash-icon-size;
+    border-radius: $radius-pill;
+    font-size: $flash-icon-font-size;
+    font-weight: $btn-font-weight;
+}
+
+.flash-text {
+    flex: 1;
+}
+
+.flash--danger {
+    border-color: rgba(220, 38, 38, 0.4);
+    background: rgba(220, 38, 38, 0.12);
+
+    .flash-icon {
+        background: var(--danger);
+        color: #fff;
+    }
+}
+
+.flash--warning {
+    border-color: rgba(217, 119, 6, 0.4);
+    background: rgba(217, 119, 6, 0.14);
+
+    .flash-icon {
+        background: var(--warning);
+        color: $btn-warning-fg;
+    }
+}
+
+.flash--success {
+    border-color: rgba(22, 163, 74, 0.35);
+    background: rgba(22, 163, 74, 0.12);
+
+    .flash-icon {
+        background: var(--success);
+        color: #fff;
+    }
+}
+
+.flash--info {
+    border-color: rgba(2, 132, 199, 0.35);
+    background: rgba(2, 132, 199, 0.12);
+
+    .flash-icon {
+        background: var(--accent);
+        color: $btn-info-fg;
+    }
+}
+
+.flash__close {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 1.05rem;
+    line-height: 1;
+    padding: $space-1;
+
+    &::before {
+        content: "×";
+    }
+}

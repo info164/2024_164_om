@@ -1,0 +1,38 @@
+@use "variables" as *;
+
+/* --- Liste d’accès rapide stock --- */
+
+.stock-lines {
+    margin-top: $space-7;
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.stock-line-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $stock-line-padding-y $stock-line-padding-x;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: $btn-font-weight;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    &:hover {
+        background: $stock-line-hover-bg;
+        color: var(--text);
+        text-decoration: none;
+    }
+}
+
+.stock-line-arrow {
+    color: var(--muted);
+    font-weight: $brand-font-weight;
+}

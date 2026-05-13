@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Connexion Stock{% endblock %}
+{% block body %}
+<div class="wrap" style="max-width: 520px;">
+    <div class="panel">
+        <h3 class="mb-3">Connexion à la gestion stock</h3>
+        <p class="muted">Entre le mot de passe pour accéder aux pages stock.</p>
+        <form method="POST">
+            <input type="hidden" name="next" value="{{ next_url }}">
+            <div class="field">
+                <label for="password" class="field-label">Mot de passe</label>
+                <input id="password" name="password" type="password" class="control" required autofocus>
+            </div>
+            <button type="submit" class="btn btn--primary">Se connecter</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

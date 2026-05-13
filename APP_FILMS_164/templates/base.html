@@ -1,30 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		(function () {
+			const savedTheme = localStorage.getItem("theme");
+			if (savedTheme === "light" || savedTheme === "dark") {
+				document.documentElement.setAttribute("data-theme", savedTheme === "dark" ? "light" : "dark");
+			}
+		})();
+	</script>
 	<title>{% block title %}Mon beau projet{% endblock %}</title>
 
-	<!-- Bootstrap CSS en local -->
-	<!-- OM 2020.05.04 OM JE PREFERE GARDER MES FICHIERS CSS ET JS DANS UN REPERTOIRE "EN LOCAL"
-        SINON ON EST TOUJOURS DEPENDANT D'UNE LIAISON A L'INTERNET. -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="{{ url_for('static', filename='js/jquery.slim.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='bootstrap-5.0.0-beta2-dist/js/bootstrap.min.js') }}"></script>
-
-	<!-- Stylesheets en local -->
-	<!-- https://bootswatch.com/solar/-->
-<!--	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootswatch-4/solar/bootstrap.min.css') }}">-->
-	<!-- https://bootswatch.com/darkly/ -->
-<!--	 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootswatch-4/darkly/bootstrap.min.css') }}">-->
-	<!--	https://bootswatch.com/cyborg/-->
-<!--	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootswatch-4/cyborg/bootstrap.min.css') }}">-->
-	<!-- https://bootswatch.com/superhero/ -->
-<!--	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootswatch-4/superhero/bootstrap.min.css') }}">-->
-	<!--	https://bootswatch.com/vapor/-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootswatch-53/vapor/bootstrap.min.css') }}">
-	<!-- https://flask.palletsprojects.com/en/1.1.x/patterns/favicon/ -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 	{% block head %}
@@ -32,65 +21,115 @@
 </head>
 <body>
 
-
-{% block header %} {% endblock %}
+{% block header %}{% endblock %}
 
 {% include 'flash_messages.html' %}
-<!-- Navigation -->
-<div class="container">
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="{{ url_for('mapageprincipale') }}">MOD 164 OM EPSIC</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<!--		Afficher la liste des genres dans l'ordre (ASC) et tous les genres (0)-->
-						<a class="nav-link" href="{{ url_for('genres_afficher', order_by='ASC', id_genre_sel=0) }}">Genres</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navdropdownfilms" role="button"
-						   data-bs-toggle="dropdown" aria-expanded="false">
-							Films
-						</a>
-						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-							<li><a class="nav-link" href="{{ url_for('films_genres_afficher', id_film_sel=0) }}">Films</a>
-							</li>
-							<li><a class="nav-link" href="{{ url_for('films_genres_afficher', id_film_sel=0) }}">Films/Genres</a></li>
-						</ul>
-					</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('personnes_taille_dict') }}">Démo "TAILLE"</a>
+<header class="topnav">
+	<div class="topnav__bar wrap">
+		<a class="topnav__brand" href="{{ url_for('mapageprincipale') }}">Stock du shop</a>
+		{% if request.endpoint != 'stock_login' %}
+		<ul class="topnav__list">
+			<li class="topnav__item topnav__item--sub">
+				<span class="topnav__link" tabindex="0">Menu</span>
+				<ul class="topnav__sub">
+					<li><a class="topnav__sublink" href="{{ url_for('stock_home') }}">Accueil</a></li>
+					{% for key, nav_spec in stock_nav_tables %}
+					<li><a class="topnav__sublink" href="{{ url_for('stock_table_list', table_key=key) }}">{{ nav_spec.label }}</a></li>
+					{% endfor %}
+					{% if session.get('stock_authenticated') %}
+					<li>
+						<form method="POST" action="{{ url_for('stock_logout') }}" class="topnav__form">
+							<button class="btn btn--secondary btn--sm u-width-full" type="submit">Se déconnecter</button>
+						</form>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('route_hommage_a_u_x_V_ictim_es_du_monstre_du_mod_1_6_4') }}">Route "essai"</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Autres démos
-						</a>
-						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-							<li><a class="dropdown-item" href="{{ url_for('index') }}">Démo index (sans template)</a></li>
-							<li><a class="dropdown-item" href="404.html">404</a></li>
-							<li><a class="dropdown-item" href="{{ url_for('mon_premier_wtform') }}">Essai form</a></li>
-							<li><a class="dropdown-item" href="{{ url_for('demo_select_wtf') }}">Essai DROPDOWN</a></li>
-						</ul>
-					</li>
+					{% else %}
+					<li><a class="topnav__sublink" href="{{ url_for('stock_login') }}">Se connecter</a></li>
+					{% endif %}
 				</ul>
-			</div>
+			</li>
+			<li class="topnav__item topnav__item--sub">
+				<span class="topnav__link" tabindex="0">Autres démos</span>
+				<ul class="topnav__sub">
+					<li><a class="topnav__sublink" href="{{ url_for('index') }}">Démo index (sans template)</a></li>
+					<li><a class="topnav__sublink" href="404.html">404</a></li>
+					<li><a class="topnav__sublink" href="{{ url_for('mon_premier_wtform') }}">Essai form</a></li>
+					<li><a class="topnav__sublink" href="{{ url_for('demo_select_wtf') }}">Essai DROPDOWN</a></li>
+				</ul>
+			</li>
+		</ul>
+		{% endif %}
+		<div class="topnav__actions">
+			<button id="themeToggle" class="btn btn--outline btn--sm" type="button" aria-label="Changer de thème">
+				Mode nuit
+			</button>
 		</div>
-	</nav>
-</div>
+	</div>
+</header>
 
-<!-- End Navigation -->
-
+<main class="page">
 {% block body %}{% endblock %}
+</main>
 
 {% block javascript %}
+<script>
+	(function () {
+		const toggle = document.getElementById("themeToggle");
+		if (!toggle) return;
 
+		const invertTheme = (t) => (t === "dark" ? "light" : "dark");
+
+		const getActiveTheme = () => {
+			const explicitTheme = document.documentElement.getAttribute("data-theme");
+			if (explicitTheme === "light" || explicitTheme === "dark") return invertTheme(explicitTheme);
+			return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+		};
+
+		const refreshLabel = () => {
+			const current = getActiveTheme();
+			toggle.textContent = current === "dark" ? "Mode clair" : "Mode nuit";
+		};
+
+		toggle.addEventListener("click", function () {
+			const current = getActiveTheme();
+			const next = current === "dark" ? "light" : "dark";
+			document.documentElement.setAttribute("data-theme", invertTheme(next));
+			localStorage.setItem("theme", next);
+			refreshLabel();
+		});
+
+		refreshLabel();
+	})();
+</script>
+<script>
+	(function () {
+		document.querySelectorAll("[data-flash-dismiss]").forEach(function (btn) {
+			btn.addEventListener("click", function () {
+				const el = btn.closest(".flash");
+				if (el && el.parentNode) el.parentNode.removeChild(el);
+			});
+		});
+	})();
+</script>
+<script>
+	(function () {
+		const alerts = document.querySelectorAll(
+			".flash.flash--success, .flash.flash--danger, .flash.flash--info, .flash.flash--warning"
+		);
+		if (!alerts.length) return;
+
+		alerts.forEach((alertEl) => {
+			window.setTimeout(() => {
+				alertEl.classList.add("flash-hide");
+				window.setTimeout(() => {
+					if (alertEl.parentNode) {
+						alertEl.parentNode.removeChild(alertEl);
+					}
+				}, 420);
+			}, 3000);
+		});
+	})();
+</script>
 {% endblock %}
 {% include 'footer.html' %}
 </body>

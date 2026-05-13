@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Demo liste déroulante (WTF) {% endblock %}
 {% block body %}
-<div class="container">
+<div class="wrap">
     <h1>Démo d'une liste déroulante (WTForms) sur la table "t_genre".</h1>
     <p></p>
-    <div class="alert alert-dismissible alert-info">
-        <h4 class="alert-heading">Il ne faut pas utiliser ce système pour les tables intermédiaires avec plusieurs clés étrangères "fk_".</h4>
+    <div class="callout">
+        <h4 class="callout__title">Il ne faut pas utiliser ce système pour les tables intermédiaires avec plusieurs clés étrangères "fk_".</h4>
     </div>
 
     <p></p>
@@ -58,14 +58,14 @@
     <form action="" method="POST" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.genres_dropdown_wtf.label(class="form-control-label") }}<br>
-            {{ form.genres_dropdown_wtf(class="form-select-sm") }}
+            {{ form.genres_dropdown_wtf.label(class="field-label") }}<br>
+            {{ form.genres_dropdown_wtf(class="control control--sm") }}
             {% for error in form.genres_dropdown_wtf.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>Genre choisi : {{ form.genres_dropdown_wtf.data }}</p>
-        <p>{{ form.submit_btn_ok_dplist_genre(class="btn btn-primary") }}</p>
+        <p>{{ form.submit_btn_ok_dplist_genre(class="btn btn--primary") }}</p>
     </form>
 
 
@@ -81,16 +81,14 @@
         </p>
     </div>
     <p></p>
-    <form action="{{ url_for('demo_select_dropdown_bootstrap') }}" method="POST" novalidate>
-        <select id="essai_dropdown"  name="ma_petite_liste_unique" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+    <form action="{{ url_for('demo_select_dropdown') }}" method="POST" novalidate>
+        <select id="essai_dropdown" name="ma_petite_liste_unique" class="control mb-3" aria-label="Choix de genre">
             {% for row in data_genres_drop_down %}
                 <option value="{{ row.id_genre }}">{{ row.intitule_genre }}</option>
             {% endfor %}
         </select>
-        <button type="submit" value="Submit">Choix</button>
+        <button type="submit" class="btn btn--secondary">Choix</button>
     </form>
 </div>
 
 {% endblock %}
-
-

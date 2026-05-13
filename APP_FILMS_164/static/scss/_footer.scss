@@ -1,0 +1,33 @@
+@use "variables" as *;
+
+/* --- Pied de page --- */
+
+.site-footer {
+    margin-top: auto;
+    padding: $space-7 0 $space-10;
+}
+
+.site-footer .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 $space-7;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-7;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.footer-note {
+    flex: 1 1 280px;
+}
+
+.footer-meta {
+    flex: 0 0 auto;
+    text-align: right;
+    font-size: $font-size-small;
+    color: var(--muted);
+}

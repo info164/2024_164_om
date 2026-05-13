@@ -1,0 +1,21 @@
+@use "mixins" as *;
+
+// Injection des variables CSS pour le changement de thème au runtime
+
+:root {
+    @include theme-light-css-vars;
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme]) {
+        @include theme-dark-css-vars;
+    }
+}
+
+html[data-theme="light"] {
+    @include theme-light-explicit-css-vars;
+}
+
+html[data-theme="dark"] {
+    @include theme-dark-css-vars;
+}

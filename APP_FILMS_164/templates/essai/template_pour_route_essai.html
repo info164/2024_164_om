@@ -1,24 +1,18 @@
 {% extends "base.html" %}
 {% block title %} Page route essai {% endblock %}
 {% block body %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				 "route essai"
-			</h3>
-			<main class="site-content">
-				<p>
-					Démo pour comprendre l'association dans templates/base.html (ligne 52)
-					url_for('route_hommage_a_u_x_V_ictim_es_du_monstre_du_mod_1_6_4')
-				</p>
-				<p>
-					et le fichier Python "zzzdemos/routes_demos.py" (ligne 20)
-					definition de la fonction "def route_hommage_a_u_x_V_ictim_es_du_monstre_du_mod_1_6_4():"
-					qui va retourner la page actuelle "essai/template_pour_route_essai.html"
-				</p>
-			</main>
-		</div>
+<div class="wrap">
+	<h3>"route essai"</h3>
+	<div class="site-content">
+		<p>
+			Démo pour comprendre l'association dans templates/base.html (ligne 52)
+			url_for('route_hommage_a_u_x_V_ictim_es_du_monstre_du_mod_1_6_4')
+		</p>
+		<p>
+			et le fichier Python "zzzdemos/routes_demos.py" (ligne 20)
+			definition de la fonction "def route_hommage_a_u_x_V_ictim_es_du_monstre_du_mod_1_6_4():"
+			qui va retourner la page actuelle "essai/template_pour_route_essai.html"
+		</p>
 	</div>
 </div>
 {% endblock %}

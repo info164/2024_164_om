@@ -1,21 +1,16 @@
 {% extends "base.html" %}
-{% block title %} Homepage FILMS {% endblock %}
+{% block title %} Homepage STOCK {% endblock %}
 {% block body %}
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				Démo complète du 2023.03.25
-			</h3>
-			<h3>
-				CRUD sur 3 tables autour des films et leurs genres associés<br>
-			</h3>
-			<ul>
+<div class="wrap">
+	<h3>Interface Stock</h3>
+	<h3>Gestion des tables (personnes, sessions, produits, etc.)</h3>
+	<ul>
+		<li class="list-item">
+			<a href="{{ url_for('stock_home') }}">Ouvrir l'interface Stock</a>
+		</li>
 				<li class="list-item">
-					Lire le readme.md
+					<a href="{{ url_for('stock_create_session') }}">Créer une session</a>
 				</li>
-			</ul>
-		</div>
-	</div>
+	</ul>
 </div>
 {% endblock %}

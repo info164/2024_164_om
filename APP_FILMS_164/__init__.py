@@ -19,11 +19,13 @@ try:
 
         ADRESSE_SRV_FLASK = obj_env("ADRESSE_SRV_FLASK")
         DEBUG_FLASK = obj_env("DEBUG_FLASK")
-        PORT_FLASK = obj_env("PORT_FLASK")
+        PORT_FLASK = int(obj_env("PORT_FLASK"))
         SECRET_KEY_FLASK = obj_env("SECRET_KEY_FLASK")
+        STOCK_ADMIN_PASSWORD = obj_env("STOCK_ADMIN_PASSWORD", "stock164")
 
         # OM 2022.04.11 Début de l'application
         app = Flask(__name__, template_folder="templates")
+        app.config["STOCK_ADMIN_PASSWORD"] = STOCK_ADMIN_PASSWORD
         print("app.url_map ____> ", app.url_map)
 
     except Exception as erreur:
@@ -49,6 +51,7 @@ try:
 
     from APP_FILMS_164.films import gestion_films_crud
     from APP_FILMS_164.films import gestion_films_wtf_forms
+    from APP_FILMS_164.stock_admin import gestion_stock_admin
 
 except Exception as Exception_init_app_films_164:
     print(f"4567756434 Une erreur est survenue {type(Exception_init_app_films_164)} dans"

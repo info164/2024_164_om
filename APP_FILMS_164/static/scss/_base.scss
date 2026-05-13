@@ -1,0 +1,51 @@
+@use "variables" as *;
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    padding-top: $body-offset-fixed-nav;
+    font-family: $font-family-base;
+    line-height: $line-height-base;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    caret-color: transparent;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    caret-color: auto;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--primary-hover);
+        text-decoration: underline;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 0.7rem;
+    color: var(--text);
+}
